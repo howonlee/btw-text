@@ -9,6 +9,8 @@ The nodes here are the words, and the directed edges are the simplest thing I co
 
 Run by running `python net.py` inside the directory of the repo.
 
+If you want to change the corpus, you can change the `corpus.txt` to what you want. I had interesting results with a corpus of song lyrics and of poetry.
+
 Some example output. It seems a little more lucid to me than Markov Chain output, but this may be a delusion of mine.
 
 >of." "Goddess," answered Medon, "whether overheard Mercury, giver guide "Messenger "or "Mercury, Eurynome, "Bring "all Melanthius, "the names mouth Penelope; "if boldly, Eurymachus, "we used Nestor, Chromius, "now knight Noemon, "what kind before. Later Theoclymenus, Menelaus, "is "Sir, "then Euryclea. "There Ulysses. Agelaus shouted Antinous. Meanwhile Eurynome threw vast themselves perfectly well, eat bread wasted baskets mash well, useless, able clear cold comfort fire; sky spring water." willed surrounded. busily several errands. thousands skins lovely Hebe dress Polycaste, Nestor's youngest dresses Philoetius handed slipped quietly Arete brought ambrosia about. Or If, moreover, cuts While Did Their messenger, corn lands Of these, course, wrapped undisturbed. planted brains out; meat disgrace hither "It rests ultimately "Are "Sir," "First observe sorrowfully, 'My friends, mend Mentor "My sons," child, mother," friend, child," friends," friend," replied Euryalus, "go Ulysses; "she Vulcan, lame "ask Telemachus; Antinous, "by "Have Eumaeus; dear,"  
