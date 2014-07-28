@@ -1,13 +1,5 @@
-import numpy as np
-import numpy.random as npr
 from random import choice, randint
-import uuid
 import collections
-
-import matplotlib
-matplotlib.use('TkAgg')
-import matplotlib.pyplot as pyplot
-
 import networkx as nx
 
 class SandNet(object):
@@ -23,6 +15,7 @@ class SandNet(object):
 		wordct = collections.Counter()
 		for word in corpus:
 			self.graph.add_node(word, sandval=randint(0, 25), word=word)
+			#where did the 25 come from? it just seems to work well, dunno
 			if prevWord:
 				self.graph.add_edge(prevWord, word)
 			prevWord = word
@@ -64,6 +57,8 @@ if __name__ == '__main__':
 	with open("corpus.txt", "r") as corpusFile:
 		corpus = corpusFile.read().split()
 		net = SandNet(corpus=corpus)
-		output = net.loop(steps=100)
-		output = filter(lambda x: len(x) > 1, output)
+		output = net.loop(steps=1001)
+		# why this number of steps? no real principles, just it works
+		output = filter(lambda x: len(x) > 50, output)
+		# 50 will take out nearly everything, is basically the hope
 		print output
