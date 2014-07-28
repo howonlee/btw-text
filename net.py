@@ -1,4 +1,4 @@
-from random import choice, randint
+from random import choice, randint, random
 import collections
 import networkx as nx
 
@@ -47,7 +47,9 @@ class SandNet(object):
 				currData["sandval"] -= currOutdegree
 				words = words + currData["word"] + " "
 				for neighbor in self.graph.neighbors(currData["word"]):
-					nodes.append(neighbor)
+					if random() > 0.05: #dissipation chance
+						nodes.append(neighbor)
+			#probability of reduction
 		return words
 
 	def step(self):
@@ -57,7 +59,7 @@ if __name__ == '__main__':
 	with open("corpus.txt", "r") as corpusFile:
 		corpus = corpusFile.read().split()
 		net = SandNet(corpus=corpus)
-		output = net.loop(steps=1001)
+		output = net.loop(steps=5000)
 		# why this number of steps? no real principles, just it works
 		output = filter(lambda x: len(x) > 50, output)
 		# 50 will take out nearly everything, is basically the hope
