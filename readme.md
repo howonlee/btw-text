@@ -5,6 +5,8 @@ It seemed to me that the BTW abelian sandpile model is to the BTW abelian sandpi
 
 Now, what are these BTW models? [Here is some information](http://en.wikipedia.org/wiki/Abelian_sandpile_model). Now, these are not strictly like the ones that Wikipedia describes: instead of having a lattice where each square has four neighbors, we construe this thing as a directed graph where each node has the neighbors that are the out-directed neighbors of the node. So the reduction-by-4 step is a reduction-by-outdegree step.
 
+The nodes here are the words, and the directed edges are the simplest thing I could think of, which is that every word has a directed edge to the next word.
+
 Run by running `python net.py` inside the directory of the repo.
 
 Some example output. It seems a little more lucid to me than Markov Chain output, but this may be a delusion of mine.
