@@ -61,4 +61,5 @@ if __name__ == '__main__':
 		# why this number of steps? no real principles, just it works
 		output = filter(lambda x: len(x) > 50, output)
 		# 50 will take out nearly everything, is basically the hope
-		print output
+		for gened_text in output:
+			print gened_text, "\n"
