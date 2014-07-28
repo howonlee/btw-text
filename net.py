@@ -1,5 +1,5 @@
 from random import choice, randint, random
-import collections
+import collections, re
 import networkx as nx
 
 class SandNet(object):
@@ -57,11 +57,13 @@ class SandNet(object):
 
 if __name__ == '__main__':
 	with open("corpus.txt", "r") as corpusFile:
-		corpus = corpusFile.read().split()
+		corpus = corpusFile.read()
+		patt = re.compile('([^\s\w]|_)+')
+		corpus = patt.sub('', corpus).lower().split()
 		net = SandNet(corpus=corpus)
-		output = net.loop(steps=5000)
+		output = net.loop(steps=25000)
 		# why this number of steps? no real principles, just it works
-		output = filter(lambda x: len(x) > 50, output)
+		output = filter(lambda x: len(x) > 100, output)
 		# 50 will take out nearly everything, is basically the hope
 		for gened_text in output:
 			print gened_text, "\n"
