@@ -12,9 +12,9 @@ class SandNet(object):
 		self.corpus = corpus
 		self.graph = nx.DiGraph()
 		prevWord = None
-		wordct = collections.Counter()
+		wordct = collections.Counter(corpus)
 		for word in corpus:
-			self.graph.add_node(word, sandval=randint(0, 25), word=word)
+			self.graph.add_node(word, sandval=wordct[word], word=word)
 			#where did the 25 come from? it just seems to work well, dunno
 			if prevWord:
 				self.graph.add_edge(prevWord, word)
@@ -61,9 +61,9 @@ if __name__ == '__main__':
 		patt = re.compile('([^\s\w]|_)+')
 		corpus = patt.sub('', corpus).lower().split()
 		net = SandNet(corpus=corpus)
-		output = net.loop(steps=25000)
+		output = net.loop(steps=1)
 		# why this number of steps? no real principles, just it works
-		output = filter(lambda x: len(x) > 100, output)
+		output = filter(lambda x: len(x) > 1, output)
 		# 50 will take out nearly everything, is basically the hope
 		for gened_text in output:
 			print gened_text, "\n"
