@@ -9,7 +9,7 @@ The nodes here are the words, and the directed edges are the simplest thing I co
 
 Run by running `python net.py` inside the directory of the repo. You may have to try a couple of times, because the parameters are set so that the distribution of words is most Zipf-like.
 
-If you want to change the corpus, you can change the `corpus.txt` to what you want. I had interesting results with a corpus of song lyrics and of poetry. Because of the nature of the model, there is a saturation of sorts when the corpus is actually too small to learn properly.
+If you want to change the corpus, you can change the `corpus.txt` to what you want. I had interesting results with a corpus of song lyrics and of poetry. Because of the nature of the model, there is a saturation of sorts when the corpus is actually too small to learn properly. So using a big goddamn corpus gives you good results: the checked in repo has the Odyssey but that's just because big files and git don't mix well.
 
 Some example output is in `example_output.txt` and below. It seems a little more lucid to me than Markov Chain output.
 
