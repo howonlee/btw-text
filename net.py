@@ -1,5 +1,6 @@
+from __future__ import print_function
 from random import choice, randint, random
-import collections, re
+import collections, re, sys
 import networkx as nx
 
 class SandNet(object):
@@ -12,15 +13,14 @@ class SandNet(object):
 		self.corpus = corpus
 		self.graph = nx.DiGraph()
 		prevWord = None
-		wordct = collections.Counter(corpus)
+		#self.wordct = collections.Counter(corpus)
 		for word in corpus:
-			self.graph.add_node(word, sandval=wordct[word], word=word)
-			#where did the 25 come from? it just seems to work well, dunno
+			self.graph.add_node(word, sandval=randint(0, 10), word=word)
 			if prevWord:
 				self.graph.add_edge(prevWord, word)
 			prevWord = word
-		print "order: ", self.graph.order()
-		print "size: ", self.graph.size()
+		print("order: ", self.graph.order(), file=sys.stderr)
+		print("size: ", self.graph.size(), file=sys.stderr)
 		self.numAvalanches = 0
 
 	def loop(self, steps=1):
@@ -37,15 +37,15 @@ class SandNet(object):
 			currNode = nodes.pop()
 			if type(currNode) == tuple:
 				currData = self.graph.node[currNode[0]]
-				currOutdegree = self.graph.out_degree(currNode[0])
+				currdegree = self.graph.out_degree(currNode[0])
 			elif type(currNode) == str:
 				currData = self.graph.node[currNode]
-				currOutdegree = self.graph.out_degree(currNode)
+				currdegree = self.graph.out_degree(currNode)
 			currData["sandval"] += 1
-			if currData["sandval"] >= currOutdegree:
+			words = words + currData["word"] + " "
+			if currData["sandval"] >= currdegree:
 				self.numAvalanches += 1
-				currData["sandval"] -= currOutdegree
-				words = words + currData["word"] + " "
+				currData["sandval"] -= currdegree
 				for neighbor in self.graph.neighbors(currData["word"]):
 					if random() > 0.05: #dissipation chance
 						nodes.append(neighbor)
@@ -53,17 +53,17 @@ class SandNet(object):
 		return words
 
 	def step(self):
-		return self.increase(choice(self.graph.nodes(data=True)))
+		return self.increase(choice(self.corpus))
 
 if __name__ == '__main__':
 	with open("corpus.txt", "r") as corpusFile:
-		corpus = corpusFile.read()
-		patt = re.compile('([^\s\w]|_)+')
-		corpus = patt.sub('', corpus).lower().split()
+		corpus = corpusFile.read().split()
+		#patt = re.compile('([^\s\w]|_)+')
+		#corpus = patt.sub('', corpus).split()
 		net = SandNet(corpus=corpus)
-		output = net.loop(steps=1)
+		output = net.loop(steps=7500)
 		# why this number of steps? no real principles, just it works
-		output = filter(lambda x: len(x) > 1, output)
+		output = filter(lambda x: len(x) > 100, output)
 		# 50 will take out nearly everything, is basically the hope
 		for gened_text in output:
-			print gened_text, "\n"
+			print(gened_text)

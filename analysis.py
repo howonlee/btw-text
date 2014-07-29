@@ -7,9 +7,12 @@ if __name__ == "__main__":
 	with open(sys.argv[1], "r") as ex_out:
 		words = ex_out.read()
 		patt = re.compile('([^\s\w]|_)+')
-		words = patt.sub('', words).lower()
+		words = patt.sub('', words)
 		wordlist = words.split()
 		ct = collections.Counter(wordlist)
-		word_counts = np.array(map(operator.itemgetter(1), ct.most_common()))
-		plt.hist(word_counts, log=True)
+		#this is to obtain the log-log property
+		word_counts = np.array(map(lambda x: math.log(x), map(operator.itemgetter(1), ct.most_common())))
+		#word_counts = np.array(map(operator.itemgetter(1), ct.most_common()))
+		plt.hist(word_counts)
+		plt.yscale('log')
 		plt.show()
