@@ -59,10 +59,11 @@ if __name__ == '__main__':
 	with open("corpus.txt", "r") as corpusFile:
 		corpus = corpusFile.read().split()
 		net = SandNet(corpus=corpus)
-		output = net.loop(steps=135000)
+		output = net.loop(steps=13000)
 		# why this number of steps? no real principles, just it works
 		# but we do have a viable way of testing if it worked: run the analysis program on it and see if it follows Zipf's law
 		# meaning, see if it is a straight line on the log-log graph
+		# currently, it is mildly straight-liney
 		output = filter(lambda x: len(x) > 100, output)
 		# 50 will take out nearly everything, is basically the hope
 		for gened_text in output:
