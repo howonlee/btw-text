@@ -11,4 +11,6 @@ Run by running `python net.py` inside the directory of the repo. You may have to
 
 If you want to change the corpus, you can change the `corpus.txt` to what you want. I had interesting results with a corpus of song lyrics and of poetry. Because of the nature of the model, there is a saturation of sorts when the corpus is actually too small to learn properly.
 
-Some example output is in example_output.txt. It seems a little more lucid to me than Markov Chain output, but this may be a delusion of mine.
+Some example output is in `example_output.txt` and below. It seems a little more lucid to me than Markov Chain output.
+
+>heaven first or dispersed the us, us- from us. hates you. will so will against was did would give on robbed him of me than with frustrate their alone vouchsafed Helen it me itself, grudged us visits me took never brings may itself; you when, however, therefore, and prosper be meant sent has above ground your the Ortygia, where ground? One I water it, me, his all to send had shall grant for fed drove in have grants this, me as put one direct our your me. you. vouchsafes us him help and 
