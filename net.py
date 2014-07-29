@@ -61,7 +61,7 @@ if __name__ == '__main__':
 		#patt = re.compile('([^\s\w]|_)+')
 		#corpus = patt.sub('', corpus).split()
 		net = SandNet(corpus=corpus)
-		output = net.loop(steps=7500)
+		output = net.loop(steps=12000)
 		# why this number of steps? no real principles, just it works
 		output = filter(lambda x: len(x) > 100, output)
 		# 50 will take out nearly everything, is basically the hope
