@@ -27,6 +27,9 @@ class SandNet(object):
 	def loop(self, steps=1):
 		return [self.step() for i in xrange(steps)]
 
+	def neg_loop(self, steps=1):
+		return [self.neg_step() for i in xrange(steps)]
+
 	def increase(self, chosenNode):
 		"""
 		Increase
@@ -75,15 +78,21 @@ class SandNet(object):
 		return words
 
 	def step(self):
-		self.increase(choice(self.corpus))
-		return self.decrease(choice(self.corpus)) #to maybe fuck with the statistics
+		return self.increase(choice(self.corpus))
+
+	def neg_step(self):
+		return self.decrease(choice(self.corpus))
 
 if __name__ == '__main__':
 	with open("corpus.txt", "r") as corpusFile:
 		corpus = corpusFile.read().split()
 		net = SandNet(corpus=corpus)
-		output = net.loop(steps=90000)
+		for i in xrange(10):
+			output = net.loop(steps=5000)
+			neg_output = net.neg_loop(steps=1000)
 		output = filter(lambda x: len(x) > 100, output)
+		neg_output = filter(lambda x: len(x) > 100, neg_output)
 		# 50 will take out nearly everything, is basically the hope
 		for gened_text in output:
 			print(gened_text)
+			#print(gened_negtext)
